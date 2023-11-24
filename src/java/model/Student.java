@@ -1,23 +1,23 @@
 package model;
 
 public class Student {
-    private int studentID;
+    private String studentID;
     private String studentName;
     private String account;
     private String password;
 
-    public Student(int studentID, String studentName, String account, String password) {
+    public Student(String studentID, String studentName, String account, String password) {
         this.studentID = studentID;
         this.studentName = studentName;
         this.account = account;
         this.password = password;
     }
 
-    public int getStudentID() {
+    public String getStudentID() {
         return studentID;
     }
 
-    public void setStudentID(int studentID) {
+    public void setStudentID(String studentID) {
         this.studentID = studentID;
     }
 
@@ -43,5 +43,15 @@ public class Student {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentID=" + studentID +
+                ", studentName='" + studentName + '\'' +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

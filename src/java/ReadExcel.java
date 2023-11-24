@@ -1,5 +1,6 @@
 import model.Student;
 import model.StudentsList;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -19,32 +20,39 @@ public class ReadExcel {
             XSSFSheet sheet = xssfWorkbook.getSheetAt(0);
 
             int rowNum = sheet.getLastRowNum();
-            //System.out.println(rowNum);
 
-            for (int row = 0; row <= rowNum; row++) {
+            //System.out.println(rowNum);
+            ArrayList<Student> students = new ArrayList<>();
+            for (int row = 1; row <= rowNum; row++) {
+
+
 
                 int maxRol = sheet.getRow(row).getLastCellNum();
 
-                System.out.println("------第 "+ (row+1) +" 行数据如下：------");
-                for (int rol = 0; rol < maxRol; rol++) {
+                //System.out.println("------第 " + (row) + " 行数据如下：------");
 
-                    System.out.println(sheet.getRow(row).getCell(rol));
-                    
-                }
-                System.out.println();
+                String id = sheet.getRow(row).getCell(0).toString();
 
+                String name = sheet.getRow(row).getCell(1).toString();
+
+                String account = sheet.getRow(row).getCell(2).toString();
+
+                String password = sheet.getRow(row).getCell(3).toString();
+
+
+                Student student = new Student(id,name,account,password);
+                students.add(students.size(),student);
             }
 
 
-            Student student1 = new Student(id,name,account,password);
-            ArrayList<Student> students = new ArrayList<>();
-            students.add(0,student1);
-
-            Student student2 = new Student();
-            students.add(0,student2);
-
             StudentsList studentsList = new StudentsList();
             studentsList.setStudentsList(students);
+            System.out.println("数据采集完成！");
+            System.out.println();
+
+            for (int i = 0; i < studentsList.getStudentsList().size(); i++) {
+                System.out.println(studentsList.getStudentsList().get(i).toString());
+            }
 
 
 
